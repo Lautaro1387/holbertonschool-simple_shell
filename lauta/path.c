@@ -9,8 +9,8 @@ int main(int ac, char **av)
 	printf ("%s\n", buff);
 	while(buff)
 	{
-		printf ("%s\n", buff);
-		strtok(NULL, ":");
+		printf("%s\n", buff);
+		buff = strtok(NULL, ":");
 	}
 	return (0);
 }
