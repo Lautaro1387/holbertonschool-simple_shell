@@ -1,37 +1,30 @@
 #include <stdio.h>
-#include <sys/types.h>
-#include <sys/stat.h>
+#include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
+#include <sys/stat.h>
 
-/**
- * main - stat example
- *
- * Return: Always 0.
- */
-int main(int ac, char **av)
+int main(int argc, char **argv)
 {
-    unsigned int i;
-    struct stat st;
+	char *path, *pathdup, *full_path;
+	struct stat st;
 
-    if (ac < 2)
-    {
-        printf("Usage: %s path_to_file ...\n", av[0]);
-        return (1);
-    }
-
-    i = 1;
-    while (av[i])
-    {
-        printf("%s:", av[i]);
-        if (stat(av[i], &st) == 0)
-        {
-            printf(" FOUND\n");
-        }
-        else
-        {
-            printf(" NOT FOUND\n");
-        }
-        i++;
-    }
-    return (0);
+	if (argc < 2)
+		return (1);
+	path = getenv("PATH");
+	pathdup = strdup(path);
+	pathdup = strtok(pathdup, ":");
+	while (pathdup)
+	{
+		full_path = strdup(pathdup);
+		strcat(full_path, "/");
+		strcat(full_path, argv[1]);
+		if (stat(full_path, &st) == 0)
+		{
+			printf("%s\n", full_path);
+			break;
+		}
+		pathdup = strtok(NULL, ":");
+	}
+	return (-1);
 }
