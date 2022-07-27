@@ -12,28 +12,51 @@ int main(void)
 		unsigned int len;
 		struct list_s *next;
 	} list_t;
-	list_t *new, *temp;
+	list_t *prev, *new, *head, *temp;
 	
 	path = getenv("PATH");
 	pathdup = strdup(path);
 	pathdup = strtok(pathdup, ":");
+	
+	/* create first node */
+    head = malloc(sizeof(list_t));
+	prev = head;
+
+	/*
 	new = malloc(sizeof(list_t));
 	if (!new)
 		return (0);
 	new->str = strdup(pathdup);
 	new->len = strlen(new->str);
 	new->next = NULL;
+	*/
 	while (pathdup)
 	{
-		new = malloc(sizeof(list_t));
-		if (!new)
-			return (0);
-		pathdup = strtok(NULL, ":");
-		temp = new;
+		if (!prev->str)
+			new = prev;
+		else
+		{
+			/* create new node */
+			new = malloc(sizeof(list_t));
+			if (!new)
+				return (0);
+			prev->next = new;
+			prev = new;
+		}
 		new->str = strdup(pathdup);
-		new->len = strlen(new->str);
-		temp->next = new;
-		printf("%s\n", new->str);
+		new->len = strlen(pathdup);
+		new->next = NULL;
+		/* next token */
+		pathdup = strtok(NULL, ":");
 	}
+
+
+	temp = head;
+	while (temp && temp->str)
+	{
+		printf("%s\n", temp->str);
+		temp = temp->next;
+	}
+
 	return (0);
 }
