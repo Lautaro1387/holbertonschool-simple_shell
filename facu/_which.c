@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv)
 {
-	char *path, *pathdup, *file;
+	char *path, *pathdup, *full_path;
 	struct stat st;
 
 	if (argc < 2)
@@ -16,17 +16,13 @@ int main(int argc, char **argv)
 	pathdup = strtok(pathdup, ":");
 	while (pathdup)
 	{
-		while (pathdup && pathdup[0] == '/')
-			pathdup++;
-		file = strtok(pathdup, "/");
-		while (file)
+		full_path = strdup(pathdup);
+		strcat(full_path, "/");
+		strcat(full_path, argv[1]);
+		if (stat(full_path, &st) == 0)
 		{
-			if (stat(file, &st) == 0)
-			{
-				printf("%s\n", pathdup);
-				return (0);
-			}
-			file = strtok(NULL, "/");
+			printf("%s\n", full_path);
+			break;
 		}
 		pathdup = strtok(NULL, ":");
 	}
