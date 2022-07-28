@@ -11,6 +11,7 @@
 #include <sys/file.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+int _which(int argc, char **argv);
 void _puts(char *str);
 char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);

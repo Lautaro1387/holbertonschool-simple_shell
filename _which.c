@@ -4,7 +4,7 @@
 #include <string.h>
 #include <sys/stat.h>
 
-int main(int argc, char **argv)
+int _which(int argc, char **argv)
 {
 	char *path, *pathdup, *full_path;
 	struct stat st;
