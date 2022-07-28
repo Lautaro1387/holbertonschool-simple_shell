@@ -33,7 +33,7 @@ int main(void)
 			if (!new)
 				return (0);
 			prev->next = new;
-			prev = new;
+			prev = next;
 		}
 		new->str = strdup(pathdup);
 		new->len = strlen(pathdup);
