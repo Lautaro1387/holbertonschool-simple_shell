@@ -1,4 +1,3 @@
-#ifndef PRE_SHELL
 #define PRE_SHELL
 #include <stdio.h>
 #include <ctype.h>
