@@ -17,7 +17,6 @@ int main(void) {
         exit(EXIT_SUCCESS);
     } else {
         printf("printed from parent process - %d\n", getpid());
-        wait(NULL);
     }
 
     exit(EXIT_SUCCESS);
