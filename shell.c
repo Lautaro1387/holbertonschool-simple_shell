@@ -29,7 +29,10 @@ int main(void)
 			}
 		}
 		else
+		{
 			wait(&status);
+			exit(EXIT_SUCCESS);
+		}
 	}
 	return (0);
 }
