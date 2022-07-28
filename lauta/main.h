@@ -11,4 +11,5 @@
 #include <sys/file.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+int _strcmp(char *s1, char *s2)
 #endif
