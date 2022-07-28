@@ -1,7 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
+#include "main.h"
+extern char **environ;
+/**
+*
+*
+*
+*
+*/
 
 int main(void)
 {
