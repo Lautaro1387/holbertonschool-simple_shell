@@ -24,14 +24,13 @@ int main(void)
 		{
 			if (execve(args[0], args, NULL) == -1)
 			{
-				perror("Error:");
+				perror("Error");
 				return (1);
 			}
 		}
 		else
 		{
 			wait(&status);
-			exit(EXIT_SUCCESS);
 		}
 	}
 	return (0);
