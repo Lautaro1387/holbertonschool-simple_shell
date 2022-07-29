@@ -35,11 +35,8 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)), char
 		{
 			wait(&status);
 		}
-<<<<<<< HEAD
 		i++;
-=======
 		free(args[0]);
->>>>>>> f20890b111f29f4be89361813fb1f778dd46bb0a
 	}
 	free(buff);
 	return (0);
