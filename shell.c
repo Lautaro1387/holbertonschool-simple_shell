@@ -20,12 +20,6 @@ int main(void)
 			break;
 		buff = strtok(buff, "\t\n\r");
 		args[0] = strdup(buff);
-		while (buff)
-		{
-			args[len] = buff;
-			buff = strtok(NULL, "\t\n\r");
-		}
-		args[len] = NULL;
 		if (fork() == 0)
 		{
 			if ((args[0][0] != ' ') && (args[0][_strlen(args[0])] != ' ') && execve(args[0], args, NULL) == -1)
