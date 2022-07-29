@@ -34,5 +34,6 @@ int main(void)
 		}
 	}
 	free(buff);
+	free(args[0]);
 	return (0);
 }
