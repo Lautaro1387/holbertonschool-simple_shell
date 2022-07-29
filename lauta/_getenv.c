@@ -2,14 +2,22 @@
 
 char *_getenv(const char *name, char **env)
 {
-	int i = 0;
-	char *buff;
+	int *buff;
+	int i, j;
+	int status;
 
-	buff = strtok(buff, "=");
-	buff = strdup(buff);
-	while(env[i])
+	for(i = 0; env[i] != NULL; i++)
 	{
-		i++;
+		status = 1;
+		for (j = 0; env[i][j] != "="; j++)
+		{
+			if (name[j] != env[i][j])
+			{
+				status = 0;
+				break;
+			}
+		}
+
 	}
-	return (0);
+	return (NULL);
 }

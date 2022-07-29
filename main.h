@@ -12,6 +12,7 @@
 #include <sys/file.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+extern char **environ;
 int _which(int argc, char **argv);
 void _puts(char *str);
 char *_strcat(char *dest, char *src);
