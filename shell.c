@@ -16,7 +16,6 @@ int main(void)
 
 	while (1)
 	{
-		write(1, "#cisfun$ ", 9);
 		if (getline(&buff, &len, stdin) == -1)
 			break;
 		buff = strtok(buff, "\n");
