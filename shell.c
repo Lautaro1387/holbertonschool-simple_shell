@@ -7,14 +7,15 @@ extern char **environ;
 *
 */
 
-int main(void)
+int main(int ac __attribute__((unused)), char **av __attribute__((unused)), char **env)
 {
 	int status;
+	int i = 0;
 	char *args[] = {"", NULL};
 	size_t len = 0;
 	char *buff = NULL;
 
-	while (1)
+	while (1 && env[i])
 	{
 		if (getline(&buff, &len, stdin) == -1)
 			break;
@@ -32,8 +33,8 @@ int main(void)
 		{
 			wait(&status);
 		}
+		i++;
 	}
 	free(buff);
-	free(args[0]);
 	return (0);
 }
