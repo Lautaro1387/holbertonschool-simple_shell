@@ -12,11 +12,11 @@ int main(void)
 	int status;
 	char *args[] = {"", NULL};
 	size_t len = 0;
-	char *buff;
+	char *buff = NULL;
 
-	while (buff && _strcmp(buff, "exit") != 0)
+	while (1)
 	{
-		printf("#cisfun$ ");
+		write(1, "#cisfun$ ", 9);
 		if (getline(&buff, &len, stdin) == -1)
 			break;
 		buff = strtok(buff, "\n");
@@ -34,5 +34,6 @@ int main(void)
 			wait(&status);
 		}
 	}
+	free(buff);
 	return (0);
 }
