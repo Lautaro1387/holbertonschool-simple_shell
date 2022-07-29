@@ -25,7 +25,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)), char
 		args[0] = strdup(buff);
 		if (fork() == 0)
 		{
-			if ((args[0][0] != ' ') && (args[0][_strlen(args[0])]) && execve(args[0], args, NULL) == -1)	
+			if ((args[0][0] != ' ') && (args[0][_strlen(args[0])] != ' ') && execve(args[0], args, NULL) == -1)	
 			{
 				perror("Error");
 				return (1);
