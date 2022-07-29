@@ -12,14 +12,13 @@ int main(void)
 	int status;
 	char *args[] = {"", NULL};
 	size_t len = 0;
-	char *buff = NULL;
+	char *buff;
 
-	printf("#cisfun$ ");
-	getline(&buff, &len, stdin);
-	while (buff != 0)
+	while (buff && _strcmp(buff, "exit") != 0)
 	{
 		printf("#cisfun$ ");
-		getline(&buff, &len, stdin);
+		if (getline(&buff, &len, stdin) == -1)
+			break;
 		buff = strtok(buff, "\n");
 		args[0] = strdup(buff);
 		if (fork() == 0)
@@ -33,7 +32,6 @@ int main(void)
 		else
 		{
 			wait(&status);
-			exit(EXIT_SUCCESS);
 		}
 	}
 	return (0);
