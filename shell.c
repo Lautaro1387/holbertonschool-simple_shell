@@ -10,7 +10,6 @@ int _strlen(char *s);
 int main(void)
 {
 	int status;
-	int i = 0;
 	char *args[] = {"", NULL};
 	size_t len = 0;
 	char *buff = NULL;
