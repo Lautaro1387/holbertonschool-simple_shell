@@ -32,8 +32,8 @@ int main(void)
 		{
 			wait(&status);
 		}
+		free(args[0]);
 	}
 	free(buff);
-	free(args[0]);
 	return (0);
 }
