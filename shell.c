@@ -64,15 +64,14 @@ char *check_space(char *buff)
 int stat_checker(char *args, char *av)
 {
     struct stat st;
-    
-	(void)av;
-	if (stat(args, &st) == 0)
-    {
-        return (1);
-    }
-    else
-    {
-        return (0);
-    }
-    return (0);
+    	(void)av;
+	if (stat(args, (&st)) == 0)
+	{
+        	return (1);
+	}
+	else
+	{
+		return (0);
+	}
+	return (0);
 }
