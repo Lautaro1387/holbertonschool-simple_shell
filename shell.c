@@ -18,7 +18,7 @@ int main(__attribute__((unused))int ac, char **av)
 	{
 		if (getline(&buff, &len, stdin) == -1)
 			break;
-		buff = token_checker(buff, args, "\t\n");
+		token_checker(buff, args, "\t\n");
 		args[0] = check_space(strdup(buff));
 		if (!args[0] || !args[0][0])
 		{
