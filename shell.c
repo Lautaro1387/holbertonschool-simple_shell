@@ -18,14 +18,14 @@ int main(__attribute__((unused))int ac, char **av)
 	{
 		if (getline(&buff, &len, stdin) == -1)
 			break;
-		buff = strtok(buff, "\n");
+		buff = strtok(buff, "\t\n");
 		args[0] = check_space(strdup(buff));
-		status = stat_checker(args[0]);
-		if (status)
-		{
+	//	status = stat_checker(args[0]);
+	//	if (status)
+	//	{
 			if (fork() == 0)
 			{
-				if (args[0] && execve(args[0], args, NULL) == -1)
+				if (execve(args[0], args, NULL) == -1)
 				{
 					perror("Error");
 					return (0);
@@ -35,11 +35,11 @@ int main(__attribute__((unused))int ac, char **av)
 			{
 				wait(&status);
 			}
-		}
+	/**	}
 		else
 		{
 			perror("Error");
-		}
+		} */
 		free(args[0]);
 	}
 	free(buff);
