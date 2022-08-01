@@ -18,7 +18,7 @@ int main(__attribute__((unused))int ac, char **av)
 	{
 		if (getline(&buff, &len, stdin) == -1)
 			break;
-		buff = strtok(buff, "\t\n");
+		buff = token_checker(buff, args, "\t\n");
 		args[0] = check_space(strdup(buff));
 		if (!args[0] || !args[0][0])
 		{
@@ -77,4 +77,20 @@ int stat_checker(char *args)
 		return (0);
 	}
 	return (0);
+}
+/**
+ *
+ *
+ *
+ */
+void token_checker(char *buff, char **array, char *delim)
+{
+	int i = 0;
+
+	array[i] = strtok(buff, delim);
+	while (array[i])
+	{
+		i++;
+		array[i] = strtok(NULL, delim);
+	}
 }

@@ -17,6 +17,7 @@
 extern char **environ;
 char *check_space(char *buff);
 int stat_checker(char *args);
+void token_checker(char *buff, char **array, char *delim);
 int _which(int argc, char **argv);
 void _puts(char *str);
 char *_strcat(char *dest, char *src);
