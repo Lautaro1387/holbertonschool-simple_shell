@@ -15,8 +15,8 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 extern char **environ;
-int check_space(char *buff);
-int stat_checker(char *ac, char *av);
+char *check_space(char *buff);
+int stat_checker(char *args, char *av);
 int _which(int argc, char **argv);
 void _puts(char *str);
 char *_strcat(char *dest, char *src);
