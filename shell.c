@@ -13,32 +13,35 @@ int main(__attribute__((unused))int ac, char **av)
 	size_t len = 0;
 	char *buff = NULL;
 
+	(void) av;
 	while (1)
 	{
 		if (getline(&buff, &len, stdin) == -1)
 			break;
-		buff = strtok(buff, "\t\n\r");
+		buff = token_checker(buff, args, "\t\n");
 		args[0] = check_space(strdup(buff));
-		status = stat_checker(args[0], av[0]);
-		if (status)
+		if (!args[0] || !args[0][0])
 		{
-			if (fork() == 0)
+			free(args[0]);
+			free(buff);
+			return (0);
+		}
+		if (fork() == 0)
+		{
+			if (execve(args[0], args, NULL) == -1)
 			{
-				if (execve(args[0], args, NULL) == -1)
-				{
-					perror("Error");
-					return (0);
-				}
+				perror("Error");
+				return (0);
 			}
-			else
-			{
-				wait(&status);
-			}
+		}
+		else
+		{
+			wait(&status);
 		}
 		free(args[0]);
 	}
 	free(buff);
-	return (1);
+	return (0);
 }
 char *check_space(char *buff)
 {
@@ -46,14 +49,14 @@ char *check_space(char *buff)
 
 	while (buff[i])
 	{
-		if (buff[i] != ' ' && buff[i] != '\n')
+		if (buff[i] != ' ' && buff[i])
 		{
 			buff[non_space] = buff[i];
 			non_space++;
 		}
 		i++;
 	}
-	buff[i] = '\0';
+	buff[non_space] = '\0';
 	return (buff);
 }
 /**
@@ -61,10 +64,10 @@ char *check_space(char *buff)
  *
  * Return: 1 if it is true or 0 if it is false.
  */
-int stat_checker(char *args, char *av)
+int stat_checker(char *args)
 {
     struct stat st;
-    	(void)av;
+
 	if (stat(args, (&st)) == 0)
 	{
         	return (1);
@@ -74,4 +77,20 @@ int stat_checker(char *args, char *av)
 		return (0);
 	}
 	return (0);
+}
+/**
+ *
+ *
+ *
+ */
+void token_checker(char *buff, char **array, char *delim)
+{
+	int i = 0;
+
+	array[i] = strtok(buff, delim);
+	while (array[i])
+	{
+		i++;
+		array[i] = strtok(NULL, delim);
+	}
 }
