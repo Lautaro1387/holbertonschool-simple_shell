@@ -33,7 +33,7 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, cha
 			free(buff);
 			return (0);
 		}
-		if (fork() == 0)
+		if (child == 0)
 		{
 			if (execve(args[0], args, env) == -1)
 			{
