@@ -7,7 +7,7 @@ int _strlen(char *s);
 *
 */
 
-int main(void)
+int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 {
 	int status;
 	char *args[] = {"", NULL};
@@ -22,14 +22,14 @@ int main(void)
 		args[0] = strdup(buff);
 		if (fork() == 0)
 		{
-		if ((args[0][0] != ' ') && (args[0][_strlen(args[0])] != ' '))
-		{
-			if (execve(args[0], args, NULL) == -1)
+			if (check_space(buff))
 			{
-				perror("Error");
-				return (1);
+				if (execve(args[0], args, NULL) == -1)
+				{
+					perror("Error");
+					return (1);
+				}
 			}
-		}
 		}
 		else
 		{
@@ -40,14 +40,15 @@ int main(void)
 	free(buff);
 	return (0);
 }
-int _strlen(char *s)
+int check_space(char *buff)
 {
-	int z = 0;
+	int i = 0;
 
-	while (*s == '\0')
+	while (buff[i])
 	{
-		z++;
-		s++;
+		if (buff[i] != ' ' && buff[i] != '\n')
+			return (1);
+		i++;
 	}
-	return (z);
+	return (0);
 }
