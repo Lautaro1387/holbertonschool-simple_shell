@@ -10,7 +10,6 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, cha
 {
 	char *buff = NULL;
 	int status = 0;
-	int child;
 	char *args[1024];
 	size_t str, len = 0;
 	char *token;
@@ -19,25 +18,24 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, cha
 	{
 		if (getline(&buff, &len, stdin) == -1)
 			break;
-		token = strtok(buff, " \t\n\r");
+		token = strtok(buff, " \t\n");
 		for (str = 0; str < 1024 && token != NULL; str++)
 		{
 			args[str] = token;
-			token = strtok(NULL, " \t\n\r");
+			token = strtok(NULL, " \t\n");
 		}
 		args[str] = NULL;
-		child = fork();
 		if (!args[0])
 		{
 			free(args[0]);
 			free(buff);
 			return (0);
 		}
-		if (child == 0)
+		if (fork() == 0)
 		{
 			if (execve(args[0], args, env) == -1)
 			{
-				perror("");
+				perror("Error");
 				return (0);
 			}
 		}
