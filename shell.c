@@ -39,10 +39,10 @@ int main(__attribute__((unused))int ac, char **av)
 					return (0);
 			}
 		}
-	free(args[0]);
+		free(args[0]);
 	}
 	free(buff);
-	return (0);
+	return (1);
 }
 int check_space(char *buff)
 {
