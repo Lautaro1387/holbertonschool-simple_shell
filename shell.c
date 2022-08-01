@@ -35,8 +35,8 @@ int main(__attribute__((unused))int ac, char **av)
 			}
 			else
 			{
-					perror("Error");
-					return (0);
+				perror("Error");
+				return (0);
 			}
 		}
 	free(args[0]);
