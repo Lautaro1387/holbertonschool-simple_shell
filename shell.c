@@ -20,18 +20,20 @@ int main(__attribute__((unused))int ac, char **av)
 			break;
 		buff = strtok(buff, "\t\n");
 		args[0] = check_space(strdup(buff));
-			if (fork() == 0)
+		if (!args[0])
+			return (0);
+		if (fork() == 0)
+		{
+			if (execve(args[0], args, NULL) == -1)
 			{
-				if (execve(args[0], args, NULL) == -1)
-				{
-					perror("Error");
-					return (0);
-				}
+				perror("Error");
+				return (0);
 			}
-			else
-			{
-				wait(&status);
-			}
+		}
+		else
+		{
+			wait(&status);
+		}
 		free(args[0]);
 	}
 	free(buff);
