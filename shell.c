@@ -13,13 +13,14 @@ int main(__attribute__((unused))int ac, char **av)
 	size_t len = 0;
 	char *buff = NULL;
 
+	(void) av;
 	while (1)
 	{
 		if (getline(&buff, &len, stdin) == -1)
 			break;
-		buff = strtok(buff, "\t\n\r");
+		buff = strtok(buff, "\n");
 		args[0] = check_space(strdup(buff));
-		status = stat_checker(args[0], av[0]);
+		status = stat_checker(args[0]);
 		if (status)
 		{
 			if (fork() == 0)
@@ -35,6 +36,10 @@ int main(__attribute__((unused))int ac, char **av)
 				wait(&status);
 			}
 		}
+		else
+		{
+			perror("Error");
+		}
 		free(args[0]);
 	}
 	free(buff);
@@ -46,14 +51,14 @@ char *check_space(char *buff)
 
 	while (buff[i])
 	{
-		if (buff[i] != ' ' && buff[i] != '\n')
+		if (buff[i] != ' ' && buff[i])
 		{
 			buff[non_space] = buff[i];
 			non_space++;
 		}
 		i++;
 	}
-	buff[i] = '\0';
+	buff[non_space] = '\0';
 	return (buff);
 }
 /**
@@ -61,10 +66,10 @@ char *check_space(char *buff)
  *
  * Return: 1 if it is true or 0 if it is false.
  */
-int stat_checker(char *args, char *av)
+int stat_checker(char *args)
 {
     struct stat st;
-    	(void)av;
+
 	if (stat(args, (&st)) == 0)
 	{
         	return (1);
