@@ -21,7 +21,11 @@ int main(__attribute__((unused))int ac, char **av)
 		buff = strtok(buff, "\t\n");
 		args[0] = check_space(strdup(buff));
 		if (!args[0] || !args[0][0])
+		{
+			free(args[0]);
+			free(buff);
 			return (0);
+		}
 		if (fork() == 0)
 		{
 			if (execve(args[0], args, NULL) == -1)
