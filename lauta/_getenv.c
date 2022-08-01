@@ -1,23 +1,29 @@
 #include "main.h"
-
-char *_getenv(const char *name, char **env)
+extern char **environ;
+/**
+ *
+ *
+ */
+char *_getenv(const char *name)
 {
-	int *buff;
 	int i, j;
 	int status;
 
-	for(i = 0; env[i] != NULL; i++)
+	for(i = 0; environ[i] != NULL; i++)
 	{
 		status = 1;
-		for (j = 0; env[i][j] != "="; j++)
+		for (j = 0; environ[i][j] != "="; j++)
 		{
-			if (name[j] != env[i][j])
+			if (name[j] != environ[i][j])
 			{
 				status = 0;
 				break;
 			}
 		}
-
+		if (status)
+		{
+			return (&environ[i][j + 1]);
+		}
 	}
 	return (NULL);
 }
