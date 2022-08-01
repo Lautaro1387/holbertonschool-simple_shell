@@ -14,6 +14,7 @@
 #include <sys/wait.h>
 extern char **environ;
 int check_space(char *buff);
+int _stat(char *ac, char *av);
 int _which(int argc, char **argv);
 void _puts(char *str);
 char *_strcat(char *dest, char *src);

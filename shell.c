@@ -1,5 +1,4 @@
 #include "main.h"
-int _strlen(char *s);
 /**
 *
 *
@@ -7,7 +6,7 @@ int _strlen(char *s);
 *
 */
 
-int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
+int main(__attribute__((unused))int ac, char **av)
 {
 	int status;
 	char *args[] = {"", NULL};
@@ -24,6 +23,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 		{
 			if (check_space(buff))
 			{
+				status = _stat(args[0], av[0]);
 				if (execve(args[0], args, NULL) == -1)
 				{
 					perror("Error");
