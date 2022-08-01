@@ -8,7 +8,7 @@
 
 int main(__attribute__((unused))int ac, char **av)
 {
-	int status;
+	int status = 0;
 	char *args[] = {"", NULL};
 	size_t len = 0;
 	char *buff = NULL;
@@ -19,23 +19,27 @@ int main(__attribute__((unused))int ac, char **av)
 			break;
 		buff = strtok(buff, "\t\n\r");
 		args[0] = strdup(buff);
-		if (fork() == 0)
+		if (check_space(buff))
 		{
-			if (check_space(buff))
+			status = stat_checker(args[0], av[0]);
+			if (status)
 			{
-				status = _stat(args[0], av[0]);
-				if (execve(args[0], args, NULL) == -1)
+				if (fork() == 0)
 				{
-					perror("Error");
-					return (1);
+					execve(args[0], args, NULL);
+				}
+				else
+				{
+					wait(&status);
 				}
 			}
+			else
+			{
+					perror("Error");
+					return (0);
+			}
 		}
-		else
-		{
-			wait(&status);
-		}
-		free(args[0]);
+	free(args[0]);
 	}
 	free(buff);
 	return (0);
