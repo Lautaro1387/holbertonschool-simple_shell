@@ -83,7 +83,7 @@ int stat_checker(char *args)
  *
  *
  */
-void token_checker(char *buff, char **array, char *delim)
+char *token_checker(char *buff, char **array, char *delim)
 {
 	int i = 0;
 
@@ -93,4 +93,5 @@ void token_checker(char *buff, char **array, char *delim)
 		i++;
 		array[i] = strtok(NULL, delim);
 	}
+	return (array[i]);
 }
