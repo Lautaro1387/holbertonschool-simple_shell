@@ -20,7 +20,7 @@ int main(__attribute__((unused))int ac, char **av)
 			break;
 		buff = strtok(buff, "\t\n");
 		args[0] = check_space(strdup(buff));
-		if (!args[0])
+		if (!args[0] || !args[0][0])
 			return (0);
 		if (fork() == 0)
 		{
