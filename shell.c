@@ -25,7 +25,7 @@ int main(__attribute__((unused))int ac, char **av)
 		{
 			if (fork() == 0)
 			{
-				if (execve(args[0], args, NULL) == -1)
+				if (args[0] && execve(args[0], args, NULL) == -1)
 				{
 					perror("Error");
 					return (0);
