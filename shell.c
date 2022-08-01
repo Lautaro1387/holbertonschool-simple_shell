@@ -43,7 +43,7 @@ int main(__attribute__((unused))int ac, char **av)
 		free(args[0]);
 	}
 	free(buff);
-	return (1);
+	return (0);
 }
 char *check_space(char *buff)
 {
