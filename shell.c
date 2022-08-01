@@ -19,11 +19,11 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, cha
 	{
 		if (getline(&buff, &len, stdin) == -1)
 			break;
-		token = strtok(buff, "\t\n\r");
+		token = strtok(buff, " \t\n\r");
 		for (str = 0; str < 1024 && token != NULL; str++)
 		{
 			args[str] = token;
-			token = strtok(NULL, "\t\n\r");
+			token = strtok(NULL, " \t\n\r");
 		}
 		args[str] = NULL;
 		child = fork();
