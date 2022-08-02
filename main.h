@@ -16,6 +16,7 @@
 #include <sys/wait.h>
 extern char **environ;
 char *check_space(char *buff);
+char *_which(char *av);
 int stat_checker(char *args);
 char *token_checker(char *buff, char **array, char *delim);
 void _puts(char *str);
