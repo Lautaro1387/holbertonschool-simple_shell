@@ -19,7 +19,10 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, cha
 			break;
 		token = strtok(buff, " \t\n");
 		if (!_strcmp(token, "exit"))
-			break;
+		{
+			free(buff);
+			return (2);
+		}
 		for (str = 0; str < 1024 && token != NULL; str++)
 		{
 			args[str] = token;
