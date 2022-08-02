@@ -21,7 +21,7 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, cha
 		if (!_strcmp(token, "exit"))
 		{
 			free(buff);
-			return (2);
+			return (str);
 		}
 		for (str = 0; str < 1024 && token != NULL; str++)
 		{
