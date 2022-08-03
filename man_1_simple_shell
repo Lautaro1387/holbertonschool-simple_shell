@@ -1,0 +1,12 @@
+.TH "03-08-2022" LINUX
+
+.SH NAME
+
+.SH SYNOPSIS
+.B #include "main.h"
+.PP
+.B int main(int ac, char **av, char **env);
+.SH DESCRIPTION
+
+.SH AUTHOR
+Writen by Facundo Blanco and Lautaro Illa.
