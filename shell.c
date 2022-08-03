@@ -39,7 +39,9 @@ int main(int ac, char **av, char **env)
 			free(buff);
 			return (0);
 		}
-			created_fork(args, env);
+		if (args[0][0] != "/")
+			args[0] = _which(args[0]);
+		created_fork(args, env);
 	}
 	free(buff);
 	return (0);
