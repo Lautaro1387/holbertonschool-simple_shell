@@ -12,7 +12,6 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, cha
 	while (1)
 	{
 		if (isatty(0))
-			printf("# ");
 		if (getline(&buff, &len, stdin) == -1)
 			break;
 		token = strtok(buff, " \t\n");
