@@ -5,7 +5,7 @@
 */
 int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, char **env)
 {
-	char *buff = NULL, *token, *args[1024], *path;
+	char *buff = NULL, *token, *args[1024];
 	int status = 0, i = 0;
 	size_t str = 0, len = 0;
 
