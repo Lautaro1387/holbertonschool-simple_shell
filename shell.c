@@ -27,7 +27,7 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, cha
 			free(buff);
 			return (0);
 		}
-		if (!_strcmp(buff, "exit"))
+		if (!_strcmp(token, "exit"))
                 {
                         free(buff);
                         return (str);
