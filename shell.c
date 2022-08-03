@@ -7,7 +7,7 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, cha
 {
 	char *buff = NULL, *token, *args[1024];
 	int status = 0;
-	size_t str, len = 0;
+	size_t str = 0, len = 0;
 
 	while (1)
 	{
@@ -19,7 +19,7 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, cha
 		if (_strcmp(token, "exit") == 0)
 		{
 			free(buff);
-			return (2);
+			return (str);
 		}
 		if (_strcmp(token, "env") == 0)
 		{
