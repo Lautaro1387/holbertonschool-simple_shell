@@ -5,7 +5,7 @@
 */
 int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, char **env)
 {
-	char *buff = NULL, *token, *args[1024];
+	char *buff = NULL, *token, *args[1024], *path;
 	int status = 0;
 	size_t str = 0, len = 0;
 
@@ -23,6 +23,8 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, cha
 		}
 		if (_strcmp(token, "env") == 0)
 		{
+			path = getenv("PATH");
+			printf("%s\n", path);
 			free(buff);
 			return (2);
 		}
