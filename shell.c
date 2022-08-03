@@ -3,7 +3,7 @@
 *
 *
 */
-int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, char **env)
+int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char **env)
 {
 	char *buff = NULL, *token, *args[1024];
 	int status = 0, i = 0;
@@ -14,17 +14,19 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, cha
 		if (getline(&buff, &len, stdin) == -1)
 			break;
 		token = strtok(buff, " \t\n\r");
+		if (!token)
+			return (0);
 		if (_strcmp(token, "exit") == 0)
-                {
-                        free(buff);
-                        return (str);
-                }
-                if (_strcmp(buff, "env") == 0)
-                {
-                	for (; env[i] != NULL; i++)
-                        	printf("%s\n", env[i]);
-                        continue;
-                }
+		{
+			free(buff);
+			return (str);
+		}
+                if (_strcmp(token, "env") == 0)
+		{
+			for (; env[i] != NULL; i++)
+				printf("%s\n", env[i]);
+			continue;
+		}
 		for (str = 0; str < 1024 && token != NULL; str++)
 		{
 			args[str] = token;
@@ -39,7 +41,6 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, cha
 		}
 		if (fork() == 0)
 		{
-
 			if (execve(args[0], args, env) == -1)
 			{
 				perror("Error");
