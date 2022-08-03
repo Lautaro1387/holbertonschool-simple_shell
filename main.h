@@ -18,6 +18,7 @@ extern char **environ;
 char *check_space(char *buff);
 char *_which(char *av);
 int stat_checker(char *args);
+int _specstr(char *token, int str, char **env);
 char *_getenv(const char *name);
 char *token_checker(char *buff, char **array, char *delim);
 void _puts(char *str);

@@ -6,7 +6,7 @@
 int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char **env)
 {
 	char *buff = NULL, *token, *args[1024];
-	int status = 0, i = 0;
+	int status = 0;
 	size_t str = 0, len = 0;
 
 	while (1)
@@ -16,17 +16,13 @@ int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char
 		token = strtok(buff, " \t\n\r");
 		if (!token)
 			break;
-		if (_strcmp(token, "exit") == 0)
+		if (_specstr(token, str, env) >= 0)
 		{
 			free(buff);
 			return (str);
 		}
-                if (_strcmp(token, "env") == 0)
-		{
-			for (; env[i] != NULL; i++)
-				printf("%s\n", env[i]);
+		else if (_specstr(token, str, env) == -1)
 			continue;
-		}
 		for (str = 0; str < 1024 && token != NULL; str++)
 		{
 			args[str] = token;
@@ -52,4 +48,21 @@ int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char
 	}
 	free(buff);
 	return (0);
+}
+int _specstr(char *token, int str, char **env)
+{
+	int i = 0;
+
+	if (_strcmp(token, "exit") == 0)
+	{
+		return (str);
+	}
+	else if (_strcmp(token, "env") == 0)
+	{
+		for (; env[i] != NULL; i++)
+			printf("%s\n", env[i]);
+		return (-1);
+	}
+	else
+		return (-2);
 }
