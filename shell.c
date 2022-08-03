@@ -15,7 +15,7 @@ int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char
 			break;
 		token = strtok(buff, " \t\n\r");
 		if (!token)
-			return (0);
+			break;
 		if (_strcmp(token, "exit") == 0)
 		{
 			free(buff);
