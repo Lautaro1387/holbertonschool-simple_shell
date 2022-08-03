@@ -6,26 +6,15 @@
 int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, char **env)
 {
 	char *buff = NULL, *token, *args[1024];
-	int status = 0, i = 0;
+	int status = 0, i = 0, interactive = 1;
 	size_t str = 0, len = 0;
 
-	while (1)
+	while (interactive)
 	{
-		if (isatty(0))
+		interactive = isatty(0);
 		if (getline(&buff, &len, stdin) == -1)
 			break;
 		token = strtok(buff, " \t\n\r");
-		if (!_strcmp(token, "exit"))
-		{
-			free(buff);
-			return (str);
-		}
-		if (_strcmp(token, "env") == 0)
-		{
-			for (; env[i] != NULL; i++)
-				printf("%s\n", env[i]);
-			continue;
-		}
 		for (str = 0; str < 1024 && token != NULL; str++)
 		{
 			args[str] = token;
@@ -38,6 +27,17 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, cha
 			free(buff);
 			return (0);
 		}
+		if (!_strcmp(buff, "exit"))
+                {
+                        free(buff);
+                        return (str);
+                }
+                if (_strcmp(buff, "env") == 0)
+                {
+                	for (; env[i] != NULL; i++)
+                        	printf("%s\n", env[i]);
+                        continue;
+                }
 		if (fork() == 0)
 		{
 
