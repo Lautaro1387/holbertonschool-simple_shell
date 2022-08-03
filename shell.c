@@ -6,7 +6,7 @@
 int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, char **env)
 {
 	char *buff = NULL, *token, *args[1024], *path;
-	int status = 0;
+	int status = 0, i = 0;
 	size_t str = 0, len = 0;
 
 	while (1)
@@ -23,10 +23,9 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, cha
 		}
 		if (_strcmp(token, "env") == 0)
 		{
-			path = getenv("PATH");
-			printf("%s\n", path);
-			free(buff);
-			return (2);
+			for (; env[i] != NULL; i++)
+				printf("%s\n", env[i]);
+			continue;
 		}
 		for (str = 0; str < 1024 && token != NULL; str++)
 		{
