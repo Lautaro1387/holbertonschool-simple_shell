@@ -16,11 +16,9 @@ char *_which(char *av)
 		strcat(full_path, "/");
 		strcat(full_path, av);
 		if (stat(full_path, &st) == 0)
-		{
-			printf("%s\n", full_path);
-			break;
-		}
+			return (full_path);
 		pathdup = strtok(NULL, ":");
+		free(full_path);
 	}
-	return (full_path);
+	return (NULL);
 }
