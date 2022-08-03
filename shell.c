@@ -19,12 +19,12 @@ int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, cha
 		if (_strcmp(token, "exit") == 0)
 		{
 			free(buff);
-			return (0);
+			return (2);
 		}
 		if (_strcmp(token, "env") == 0)
 		{
 			free(buff);
-			return (0);
+			return (2);
 		}
 		for (str = 0; str < 1024 && token != NULL; str++)
 		{
