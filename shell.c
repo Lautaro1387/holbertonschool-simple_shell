@@ -1,14 +1,18 @@
 #include "main.h"
 /**
-*
-*
+* main - Function.
+* @ac: Unused.
+* @av: Unused.
+* @env: Environment variables.
+* Return: 0.
 */
-int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char **env)
+int main(int ac, char **av, char **env)
 {
 	char *buff = NULL, *token, *args[1024];
 	int status = 0;
 	size_t str = 0, len = 0;
 
+	(void) ac, av;
 	while (1)
 	{
 		if (getline(&buff, &len, stdin) == -1)
@@ -35,20 +39,18 @@ int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char
 			free(buff);
 			return (0);
 		}
-		if (fork() == 0)
-		{
-			if (execve(args[0], args, env) == -1)
-			{
-				perror("Error");
-				return (0);
-			}
-		}
-		else
-			wait(&status);
+			created_fork(args, env);
 	}
 	free(buff);
 	return (0);
 }
+/**
+ * _specstr - Special strings.
+ * @token: String.
+ * @str: Number of argument.
+ * @env: Environment variables.
+ * Return: .
+ */
 int _specstr(char *token, int str, char **env)
 {
 	int i = 0;
@@ -65,4 +67,26 @@ int _specstr(char *token, int str, char **env)
 	}
 	else
 		return (-2);
+}
+/**
+ * created_fork - Create new proccess.
+ * @args: Strings.
+ * @env: Environment variables.
+ * Return: 0.
+ */
+int created_fork(char **args, char **env)
+{
+	int status = 0;
+
+	if (fork() == 0)
+	{
+		if (execve(args[0], args, env) == -1)
+		{
+			perror("Error: ");
+			return (0);
+		}
+	}
+	else
+		wait(&status);
+	return (0);
 }
