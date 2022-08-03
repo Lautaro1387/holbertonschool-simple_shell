@@ -2,26 +2,29 @@
 /**
 *
 *
-*
-*
 */
-
 int main(__attribute__((unused)) int ac,  __attribute__((unused)) char **av, char **env)
 {
-	char *buff = NULL, *token;
+	char *buff = NULL, *token, *args[1024];
 	int status = 0;
-	char *args[1024];
 	size_t str, len = 0;
 
 	while (1)
 	{
+		if (isatty(0))
+			printf("# ");
 		if (getline(&buff, &len, stdin) == -1)
 			break;
 		token = strtok(buff, " \t\n");
-		if (!_strcmp(token, "exit"))
+		if (_strcmp(token, "exit") == 0)
 		{
 			free(buff);
-			return (str);
+			return (0);
+		}
+		if (_strcmp(token, "env") == 0)
+		{
+			free(buff);
+			return (0);
 		}
 		for (str = 0; str < 1024 && token != NULL; str++)
 		{
