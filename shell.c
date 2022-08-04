@@ -40,9 +40,18 @@ int main(int ac, __attribute__((unused)) char **av, char **env)
 			return (0);
 		}
 		if (pathverify(args[0]) == 1)
+		{
 			args[0] = _which(args[0]);
-		created_fork(args, env);
-		free(args[0]);
+			if (!args[0])
+			{
+				perror("");
+				continue;
+			}
+			created_fork(args, env);
+			free(args[0]);
+		}
+		else
+			created_fork(args, env);
 	}
 	free(buff);
 	return (0);
