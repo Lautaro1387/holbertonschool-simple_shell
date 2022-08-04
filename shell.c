@@ -48,6 +48,7 @@ int main(int ac, __attribute__((unused)) char **av, char **env)
 				write(2, "./hsh: 1: ", 10);
 				write(2, strerr, strlen(strerr));
 				write(2, ": not found\n", 12);
+				not_found = 127;
 				continue;
 			}
 			created_fork(args, env);
@@ -57,7 +58,7 @@ int main(int ac, __attribute__((unused)) char **av, char **env)
 			created_fork(args, env);
 	}
 	free(buff);
-	return (0);
+	return (not_found);
 }
 /**
  * _specstr - Special strings.
