@@ -46,7 +46,7 @@ int main(int ac, __attribute__((unused)) char **av, char **env)
 			if (!args[0])
 			{
 				write(2, "./hsh: 1: ", 10);
-				write(2, strerr, _strlen(strerr));
+				write(2, strerr, strlen(strerr));
 				write(2, ": not found\n", 12);
 				not_found = 127;
 				continue;
