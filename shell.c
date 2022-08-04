@@ -19,13 +19,13 @@ int main(int ac, __attribute__((unused)) char **av, char **env)
 		token = strtok(buff, " \t\n\r");
 		if (!token)
 			break;
-		if (_specstr(token, str, env) >= 0)
+		if (_specstr(token, env) == 0)
+			continue;
+		if (_specstr(token, env) == 1)
 		{
 			free(buff);
 			return (str);
 		}
-		if (_specstr(token, str, env) == -1)
-			continue;
 		for (str = 0; str < 1024 && token != NULL; str++)
 		{
 			args[str] = token;
@@ -59,24 +59,24 @@ int main(int ac, __attribute__((unused)) char **av, char **env)
  * _specstr - Special strings.
  * @token: String.
  * @str: Number of argument.
- * @env: Environment variables.
+ * @envi: Environment variables.
  * Return: .
  */
-int _specstr(char *token, int str, char **env)
+int _specstr(char *token, char **envi)
 {
 	int i;
 
 	if (_strcmp(token, "exit") == 0)
 	{
-		return (str);
+		return (1);
 	}
 	if (_strcmp(token, "env") == 0)
 	{
-		for (i = 0; env[i] != NULL; i++)
-			printf("%s\n", env[i]);
-		return (-1);
+		for (i = 0; envi[i]; i++)
+			printf("%s\n", envi[i]);
+		return (0);
 	}
-		return (-2);
+		return (-1);
 }
 /**
  * created_fork - Create new proccess.

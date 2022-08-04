@@ -14,11 +14,10 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
-extern char **environ;
 char *check_space(char *buff);
 char *_which(char *av);
 int stat_checker(char *args);
-int _specstr(char *token, int str, char **env);
+int _specstr(char *token, char **envi);
 int pathverify(char *args);
 int created_fork(char **args, char **env);
 char *_getenv(const char *name);
