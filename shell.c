@@ -8,7 +8,7 @@
 */
 int main(int ac, __attribute__((unused)) char **av, char **env)
 {
-	char *buff = NULL, *token, *args[1024];
+	char *buff = NULL, *token, *strerr, *args[1024];
 	size_t str = 0, len = 0;
 
 	(void)ac;
@@ -40,10 +40,13 @@ int main(int ac, __attribute__((unused)) char **av, char **env)
 		}
 		if (pathverify(args[0]) == 1)
 		{
+			strerr = args[0];
 			args[0] = _which(args[0]);
 			if (!args[0])
 			{
-				perror("");
+				write(2, "./hsh: 1: ", 10);
+				write(2, strerr, strlen(strerr));
+				write(2, ": not found ", 12);
 				continue;
 			}
 			created_fork(args, env);
@@ -57,7 +60,7 @@ int main(int ac, __attribute__((unused)) char **av, char **env)
 }
 /**
  * _specstr - Special strings.
- * @token: String.
+ *not found @token: String.
  * @str: Number of argument.
  * @envi: Environment variables.
  * Return: .
