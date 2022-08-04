@@ -15,18 +15,13 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 extern char **environ;
-char *check_space(char *buff);
 char *_which(char *av);
-int stat_checker(char *args);
 int _specstr(char *token, char **envi);
 int pathverify(char *args);
 int created_fork(char **args, char **env);
 char *_getenv(const char *name);
 char *token_checker(char *buff, char **array, char *delim);
-void _puts(char *str);
-char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
-int _strlen(char *s);
 char *_strdup(char *str);
 char *_strcpy(char *dest, char *src);
 #endif
