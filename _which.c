@@ -3,6 +3,7 @@
 char *_which(char *av)
 {
 	char *path = NULL, *pathdup = NULL, *full_path = NULL, *token = NULL;
+	struct stat st;
 
 	if (!av)
 		return (NULL);
@@ -15,7 +16,7 @@ char *_which(char *av)
 		strcpy(full_path, token);
 		strcat(full_path, "/");
 		strcat(full_path, av);
-		if (access(full_path, F_OK) == 0)
+		if (stat(full_path, &st) == 0)
 		{
 			free(pathdup);
 			return (full_path);
