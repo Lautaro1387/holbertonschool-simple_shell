@@ -15,7 +15,6 @@ int main(int ac, __attribute__((unused)) char **av, char **env)
 	(void)ac;
 	while (interactive)
 	{
-		interactive = isatty(0);
 		if (getline(&buff, &len, stdin) == -1)
 			break;
 		token = strtok(buff, " \t\n\r");
@@ -40,10 +39,8 @@ int main(int ac, __attribute__((unused)) char **av, char **env)
 			free(buff);
 			return (0);
 		}
-		if (args[0][0] != '/' || args[0][0] != '.')
-		{
+		if (pathverify(args[0]) == 1)
 			args[0] = _which(args[0]);
-		}
 		created_fork(args, env);
 		free(args[0]);
 	}
@@ -94,5 +91,15 @@ int created_fork(char **args, char **env)
 	}
 	else
 		wait(&status);
+	return (0);
+}
+int pathverify(char *args)
+{
+	int i = 0;
+
+	while (args[i] != '/' && args[i])
+		i++;
+	if (args[i] != '/')
+		return (1);
 	return (0);
 }
