@@ -8,14 +8,14 @@ char *_which(char *av)
 	if (!av)
 		return (NULL);
 	path = _getenv("PATH");
-	pathdup = strdup(path);
+	pathdup = _strdup(path);
 	token = strtok(pathdup, ":");
 	while (token)
 	{
-		full_path = malloc(sizeof(char) * (strlen(token) + strlen(av) + 2));
-		strcpy(full_path, token);
-		strcat(full_path, "/");
-		strcat(full_path, av);
+		full_path = malloc(sizeof(char) * (_strlen(token) + _strlen(av) + 2));
+		_strcpy(full_path, token);
+		_strcat(full_path, "/");
+		_strcat(full_path, av);
 		if (stat(full_path, &st) == 0)
 		{
 			free(pathdup);
