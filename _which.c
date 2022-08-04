@@ -7,7 +7,7 @@ char *_which(char *av)
 
 	if (!av)
 		return (NULL);
-	path = getenv("PATH");
+	path = _getenv("PATH");
 	pathdup = strdup(path);
 	token = strtok(pathdup, ":");
 	while (token)
