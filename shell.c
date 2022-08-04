@@ -6,14 +6,13 @@
 * @env: Environment variables.
 * Return: 0.
 */
-int main(int ac, char **av, char **env)
+int main(int ac, __attribute__((unused)) char **av, char **env)
 {
 	char *buff = NULL, *token, *args[1024];
 	size_t str = 0, len = 0;
 	int interactive = 1;
 
 	(void)ac;
-	(void)av;
 	while (interactive)
 	{
 		interactive = isatty(0);
@@ -89,7 +88,7 @@ int created_fork(char **args, char **env)
 	{
 		if (execve(args[0], args, env) == -1)
 		{
-			perror("Error: ");
+			perror("Error:");
 			return (0);
 		}
 	}

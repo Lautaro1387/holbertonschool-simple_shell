@@ -20,7 +20,6 @@ char *_which(char *av)
 			free(pathdup);
 			return (full_path);
 		}
-		
 		free(full_path);
 		full_path = NULL;
 		token = strtok(NULL, ":");
