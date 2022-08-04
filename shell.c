@@ -10,11 +10,13 @@ int main(int ac, char **av, char **env)
 {
 	char *buff = NULL, *token, *args[1024];
 	size_t str = 0, len = 0;
+	int interactive = 1;
 
 	(void)ac;
 	(void)av;
-	while (1)
+	while (interactive)
 	{
+		interactive = isatty(0);
 		if (getline(&buff, &len, stdin) == -1)
 			break;
 		token = strtok(buff, " \t\n\r");
