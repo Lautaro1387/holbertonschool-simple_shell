@@ -2,33 +2,57 @@
 
 .SH NAME
 hsh - shell, the standard command laguage interpreter
-.SH SYNOPSIS
+.SH LIBRARIES
 .B #include <stdio.h>
-#include <ctype.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-#include <stddef.h>
-#include <stdarg.h>
-#include <unistd.h>
-#include <signal.h>
-#include <sys/file.h>
-#include <sys/types.h>
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <sys/wait.h>
+.TP
+.B #include <ctype.h>
+.TP
+.B #include <stdlib.h>
+.TP
+.B #include <string.h>
+.TP
+.B #include <math.h>
+.TP
+.B #include <stddef.h>
+.TP
+.B #include <stdarg.h>
+.TP
+.B #include <unistd.h>
+.TP
+.B #include <signal.h>
+.TP
+.B #include <sys/file.h>
+.TP
+.B #include <sys/types.h>
+.TP
+.B #include <fcntl.h>
+.TP
+.B #include <sys/stat.h>
+.TP
+.B #include <sys/wait.h>
 .PP
+.SH PROTOTYPES
 .B int main(int ac, char **av, char **env);
-extern char **environ;
-char *_which(char *av);
-int _specstr(char *token, char **envi);
-int pathverify(char *args);
-int created_fork(char **args, char **env);
-char *_getenv(const char *name);
-char *token_checker(char *buff, char **array, char *delim);
-int _strcmp(char *s1, char *s2);
-char *_strdup(char *str);
-char *_strcpy(char *dest, char *src);
+.TP
+.B extern char **environ;
+.TP
+.B char *_which(char *av);
+.TP
+.B int _specstr(char *token, char **envi);
+.TP
+.B int pathverify(char *args);
+.TP
+.B int created_fork(char **args, char **env);
+.TP
+.B char *_getenv(const char *name);
+.TP
+.B char *token_checker(char *buff, char **array, char *delim);
+.TP
+.B int _strcmp(char *s1, char *s2);
+.TP
+.B char *_strdup(char *str);
+.TP
+.B char *_strcpy(char *dest, char *src);
 .SH DESCRIPTION
 The hsh utility is a command language interpreter that shall execute commands read from a command line string, the standard input, or a specified file.
 .TP
