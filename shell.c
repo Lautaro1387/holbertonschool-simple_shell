@@ -10,6 +10,7 @@ int main(int ac, __attribute__((unused)) char **av, char **env)
 {
 	char *buff = NULL, *token, *args[1024];
 	size_t str = 0, len = 0;
+	int not_found = 0;
 
 	(void)ac;
 	while (1)
