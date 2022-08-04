@@ -20,7 +20,7 @@ int main(int ac, __attribute__((unused)) char **av, char **env)
 		token = strtok(buff, " \t\n\r");
 		if (!token)
 			break;
-		if (_specstr(token, str, env) >= 0)
+		if (_specstr(token, str, env) == 0)
 		{
 			free(buff);
 			return (str);
