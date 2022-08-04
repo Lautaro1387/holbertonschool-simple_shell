@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
+extern char **environ;
 char *check_space(char *buff);
 char *_which(char *av);
 int stat_checker(char *args);

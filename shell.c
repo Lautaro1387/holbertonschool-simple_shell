@@ -46,7 +46,7 @@ int main(int ac, __attribute__((unused)) char **av, char **env)
 			{
 				write(2, "./hsh: 1: ", 10);
 				write(2, strerr, strlen(strerr));
-				write(2, ": not found ", 12);
+				write(2, ": not found\n", 12);
 				continue;
 			}
 			created_fork(args, env);
