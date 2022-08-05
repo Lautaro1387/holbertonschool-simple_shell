@@ -6,13 +6,13 @@
 * @env: Environment variables.
 * Return: 0.
 */
-int main(int ac, __attribute__((unused)) char **av, char **env)
+int main(int ac, char **av, char **env)
 {
 	char *buff = NULL, *token, *strerr, *args[1024];
 	size_t str = 0, len = 0;
 	int not_found = 0;
 
-	(void)ac;
+	(void) ac, (void) av;
 	while (1)
 	{
 		if (getline(&buff, &len, stdin) == -1)
