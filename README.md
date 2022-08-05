@@ -10,7 +10,7 @@ int main(int ac, char **av, char **env);
 ```
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 ```
-## Compilation with valgrind
+## Test with valgrind
 ```
 valgrind --tool=memcheck --leak-check=yes --track-origins=yes --show-leak-kinds=all -s ./hsh
 ```
