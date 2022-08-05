@@ -1,4 +1,9 @@
 #include "main.h"
+/**
+ * _which - takes an argument and checks if the path exists
+ * @av: argument
+ * Return: the full path or NULL if it doesn't exists
+ */
 
 char *_which(char *av)
 {

@@ -62,8 +62,7 @@ int main(int ac, __attribute__((unused)) char **av, char **env)
 }
 /**
  * _specstr - Special strings.
- *not found @token: String.
- * @str: Number of argument.
+ * @token: String.
  * @envi: Environment variables.
  * Return: .
  */
@@ -105,6 +104,11 @@ int created_fork(char **args, char **env)
 		wait(&status);
 	return (0);
 }
+/**
+ * pathverify - takes an argument and check if it is a path
+ * @args: arguments
+ * Return: 1 on success or 0 if it fails
+ */
 int pathverify(char *args)
 {
 	int i = 0;
