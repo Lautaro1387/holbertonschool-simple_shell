@@ -1,7 +1,7 @@
 # Project: C - Simple Shell
-##### 
+##### This project consists in replicate how a the Linux Shell works.
 ## Description
-This project consists in replicate how a the Linux Shell works.
+The project is a very simple shell developed in C language. A shell is a program that takes commands inputs written from the user's keyboard and passes them to the machine to execute them through the kernel. 
 ## Prototype
 ```
 int main(int ac, char **av, char **env);
