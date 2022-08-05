@@ -15,35 +15,37 @@ int main(int ac, char **av, char **env)
 	(void) ac, (void) av;
 	while (1)
 	{
+		if (isatty(0) == 1)
+			write(1, "#cisfun$ ", 9);
 		if (getline(&buff, &len, stdin) == -1)
-			break;
-		token = strtok(buff, " \t\n\r");
+			break; /* if the user press ctrl+d exits */
+		token = strtok(buff, " \t\n"); /* tokenize the getline */
 		if (!token)
 			break;
-		if (_specstr(token, env) == 0)
+		if (_specstr(token, env) == 0) /* special string "env" behavior */
 			continue;
-		if (_specstr(token, env) == 1)
+		if (_specstr(token, env) == 1) /* special string "exit" behavior */
 		{
 			free(buff);
-			return (str);
+			return (str); /* return the number of arguments before exit */
 		}
 		for (str = 0; str < 1024 && token != NULL; str++)
 		{
-			args[str] = token;
-			token = strtok(NULL, " \t\n\r");
+			args[str] = token; /* now. tokens are strings with a numerical position */
+			token = strtok(NULL, " \t\n");
 		}
-		args[str] = NULL;
-		if (!args[0])
+		args[str] = NULL; /* last string is NULL */
+		if (!args[0]) /* if the first string is NULL we freee and return */
 		{
 			free(args[0]);
 			free(buff);
 			return (0);
 		}
-		if (pathverify(args[0]) == 1)
+		if (pathverify(args[0]) == 1) /* first string is a path? */
 		{
-			strerr = args[0];
+			strerr = args[0]; /* save the first string in case which returns NULL */
 			args[0] = _which(args[0]);
-			if (!args[0])
+			if (!args[0]) /* if which returns NULL, we return an error message */
 			{
 				write(2, "./hsh: 1: ", 10);
 				write(2, strerr, strlen(strerr));
@@ -51,11 +53,11 @@ int main(int ac, char **av, char **env)
 				not_found = 127;
 				continue;
 			}
-			created_fork(args, env);
-			free(args[0]);
+			created_fork(args, env); /* create a child process with the full path */
+			free(args[0]); /* we free after used it */
 		}
 		else
-			created_fork(args, env);
+			created_fork(args, env); /* create a child process with the user path */
 	}
 	free(buff);
 	return (not_found);
@@ -80,7 +82,7 @@ int _specstr(char *token, char **envi)
 			printf("%s\n", envi[i]);
 		return (0);
 	}
-		return (-1);
+	return (-1);
 }
 /**
  * created_fork - Create new proccess.
@@ -92,7 +94,7 @@ int created_fork(char **args, char **env)
 {
 	int status = 0;
 
-	if (fork() == 0)
+	if (fork() == 0) /* creats a child process */
 	{
 		if (execve(args[0], args, env) == -1)
 		{
@@ -101,7 +103,7 @@ int created_fork(char **args, char **env)
 		}
 	}
 	else
-		wait(&status);
+		wait(&status); /* waits for the son process */
 	return (0);
 }
 /**
