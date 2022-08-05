@@ -1,7 +1,7 @@
-.TH "03-08-2022" LINUX
+.TH "05-08-2022" LINUX
 
 .SH NAME
-hsh - shell, the standard command laguage interpreter
+hsh - shell, the standard command language interpreter
 .SH LIBRARIES
 .B #include <stdio.h>
 .TP
