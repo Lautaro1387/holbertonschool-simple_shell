@@ -1,10 +1,1 @@
-# Project: C - Simple Shell
-##### _by Facundo Blanco and Lautaro Illa_
-## Prototype
-```
-int main(int ac, char **av, char **env);
-```
-# Example
-#### #include "main.h"
-
-# Function flowcharts
+[README (1).md](https://github.com/Lautaro1387/holbertonschool-simple_shell/files/9264857/README.1.md)
