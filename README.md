@@ -50,7 +50,9 @@ root@8536ce3238f7:/holbertonschool-simple_shell# _
 - _strdup.c - Duplicate a string.
 - _strcmp.c - Compare two strings.
 - _strcpy.c - Copies one string to another.
+
 # Function flowcharts
+![Flowchart drawio](https://user-images.githubusercontent.com/88350478/183078031-9dd1a202-eadb-4d2a-a59b-1672edda7b55.png)
 
 # Authors
 _By [Lautaro Illa](https://github.com/Lautaro1387) and [Facundo Blanco](https://github.com/Facundoblanco10)_
