@@ -12,23 +12,23 @@ char *_which(char *av)
 
 	if (!av)
 		return (NULL);
-	path = _getenv("PATH");
+	path = _getenv("PATH"); /* get the PATH enviroment variable */
 	pathdup = _strdup(path);
-	token = strtok(pathdup, ":");
+	token = strtok(pathdup, ":"); /* tokenize the PATH */
 	while (token)
 	{
 		full_path = malloc(sizeof(char) * (strlen(token) + strlen(av) + 2));
 		_strcpy(full_path, token);
 		strcat(full_path, "/");
 		strcat(full_path, av);
-		if (stat(full_path, &st) == 0)
+		if (stat(full_path, &st) == 0) /* token + '/' + argument is a path? */
 		{
 			free(pathdup);
-			return (full_path);
+			return (full_path); /* return full_path */
 		}
 		free(full_path);
 		full_path = NULL;
-		token = strtok(NULL, ":");
+		token = strtok(NULL, ":"); /* move on to the next token */
 	}
 	free(full_path);
 	free(pathdup);
